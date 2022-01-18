@@ -1,4 +1,4 @@
-# SQL- Career Foundry Project
+# SQL Career Foundry Project
 ## Project based on movie rental data from a Rockbuster Stealth LCC
 ### Project's primary aim:
     - Write moderately complex SQL Queries to answer business questions
