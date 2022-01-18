@@ -1,4 +1,4 @@
-Join (Inner Join):
+Here is SQL Query for Join (Inner Join):
 
 SELECT D.country,
 COUNT(customer_id) AS total_consumers
