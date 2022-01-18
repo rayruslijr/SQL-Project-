@@ -1,0 +1,40 @@
+1. SQL Query for CTE:
+
+WITH average_cte AS (SELECT A.customer_id, B.first_name AS customer_first_name, B. last_name AS customer_last_name, D.city, E. country,
+SUM (amount) AS total_amount_paid
+FROM payment A
+INNER JOIN customer B on A. customer_id = B.customer_id
+INNER JOIN address C ON B. address_id= C.address_id
+INNER JOIN city D ON C. city_id = D.city_id
+INNER JOIN country E on D.country_id = E.country_id
+WHERE E.country IN ('India','China','United States','Japan','Mexico','Brazil','Russian Federation','Philippines','Turkey','Indonesia')
+AND D.city IN ('Aurora','Atlixco','Xintai','Adoni','Dhule(Dhulia)','Kurashiki','Pinxiang','Sivas','Celaya'
+'So Leopoldo')
+GROUP BY A.customer_id,B.first_name, B.last_name, D.city, E.country
+ORDER BY total_amount_paid DESC
+LIMIT 5)
+SELECT ROUND(AVG(total_amount_paid),2) AS average_amount_paid FROM average_cte
+
+
+2. 2nd SQL Query for CTE:
+
+WITH top_customers_cte AS
+(SELECT A.customer_id AS custID, B.first_name AS customer_first_name, B. last_name AS customer_last_name, D.city, E. country AS country_,
+SUM (amount) AS total_amount_paid
+FROM payment A
+INNER JOIN customer AS B on A.customer_id = B.customer_id
+INNER JOIN address AS C ON B.address_id= C.address_id
+INNER JOIN city AS D ON C.city_id = D.city_id
+INNER JOIN country E on D.country_id = E.country_id
+WHERE D.city IN ('Aurora','Atlixco','Xintai','Adoni','Dhule(Dhulia)','Kurashiki','Pinxiang','Sivas','Celaya', 'So Leopoldo')
+   
+GROUP BY A.customer_id,B.first_name, B.last_name, D.city, E.country ORDER BY total_amount_paid DESC
+LIMIT 5)
+SELECT D.country,
+COUNT(DISTINCT customer_id) AS all_customer_count, COUNT(DISTINCT top_customers_cte) AS top_customer_count
+FROM customer A
+INNER JOIN address AS B ON A.address_id= B.address_id
+INNER JOIN city AS C ON B.city_id = C.city_id
+INNER JOIN country AS D on C.country_id = D.country_id
+LEFT JOIN top_customers_cte ON D.country = top_customers_cte.country_ GROUP BY country
+ORDER BY all_customer_count DESC
