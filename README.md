@@ -7,4 +7,4 @@
  
 <a href = https://public.tableau.com/app/profile/ray.rusli.junior/viz/RockbusterSQLpresentation/Story1> Link to Tableau Presentation
     
-This project is a part of the case study on the Achievement 3 - Career Foundry's Data Immersion Course
+#This project is a part of the case study on the Achievement 3 - Career Foundry's Data Immersion Course
