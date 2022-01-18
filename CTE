@@ -1,4 +1,4 @@
-1. SQL Query for CTE:
+1. SQL Query for CTE: -this is part of the task to find the average amount paid from the top 5 customers in the top 10 country and top 10 cities.
 
 WITH average_cte AS (SELECT A.customer_id, B.first_name AS customer_first_name, B. last_name AS customer_last_name, D.city, E. country,
 SUM (amount) AS total_amount_paid
@@ -16,7 +16,7 @@ LIMIT 5)
 SELECT ROUND(AVG(total_amount_paid),2) AS average_amount_paid FROM average_cte
 
 
-2. 2nd SQL Query for CTE:
+2. 2nd SQL Query for CTE: - This query was used to find out the number of top 5 customer in each country
 
 WITH top_customers_cte AS
 (SELECT A.customer_id AS custID, B.first_name AS customer_first_name, B. last_name AS customer_last_name, D.city, E. country AS country_,
